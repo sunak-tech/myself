@@ -75,6 +75,7 @@ body {
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 10px;
     font-size: 1.8em;
+    animation: fluffy-animation 2.5s ease-in-out infinite;
 }
 
 /* Font Awesomeのアイコンをタイトルの前に表示 */
@@ -165,4 +166,19 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ======== 継続アニメーションの定義 ======== */
+
+/* A. ふわふわ浮き沈みさせるアニメーション */
+@keyframes fluffy-animation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px); /* 上に4px移動 */
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
