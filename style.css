@@ -1,0 +1,168 @@
+/* ======== 全体の設定 ======== */
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f4f7f6; /* 少し明るいグレーの背景 */
+    color: #333; /* 基本の文字色 */
+    line-height: 1.7; /* 行間を少し広めに */
+    margin: 0;
+    padding: 20px;
+    /* ページ表示時にふわっと表示させるアニメーション */
+    animation: fadeInPage 1s ease-in-out;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px 40px; /* パディングを少し調整 */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 影を少し柔らかく */
+}
+
+/* ======== ヘッダー：プロフィール ======== */
+.profile-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* 画像を円形にする */
+    object-fit: cover; /* 画像の比率を保ったまま中央で切り抜き */
+    border: 5px solid #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    /* マウスを乗せたときの変化を滑らかにする */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* アイコンにマウスを乗せたら少し大きくする動き */
+.profile-icon:hover {
+    transform: scale(1.08);
+}
+
+.profile-header h1 {
+    margin: 15px 0 10px;
+    font-size: 2.5em;
+    color: #2c3e50; /* 少し濃い青系の色 */
+}
+
+.profile-header p {
+    font-size: 1.1em;
+    color: #7f8c8d; /* グレー系の説明文 */
+}
+
+/* ======== カードセクション ======== */
+.card {
+    background-color: #fdfdfd;
+    border-left: 5px solid #5d9cec; /* テーマカラーを少し明るい青に */
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+/* カードにマウスを乗せたら少し浮き上がらせる動き */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #5d9cec;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    font-size: 1.8em;
+}
+
+/* Font Awesomeのアイコンをタイトルの前に表示 */
+.card h2 .fas {
+    margin-right: 12px;
+}
+
+/* HTML内の改行を反映させるための設定 */
+.card p {
+    white-space: pre-wrap;
+    font-size: 1.05em;
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; /* スキル間の隙間 */
+}
+
+.skills-list li {
+    background-color: #eaf5fc;
+    color: #5d9cec;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+/* ======== SNSリンク ======== */
+.social-links {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-links h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* リンクをボタン風にデザイン */
+.social-links a {
+    display: inline-flex; /* テキストとアイコンを横並びにする */
+    align-items: center; /* 上下中央揃え */
+    gap: 8px; /* テキストとアイコンの間隔 */
+    
+    background-color: #34495e; /* 背景色 */
+    color: #fff; /* 文字色 */
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 8px;
+    text-decoration: none; /* 下線を消す */
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+/* アイコン自体のスタイル */
+.social-links a .fab {
+    font-size: 1.3em; /* アイコンを少し大きく */
+}
+
+/* リンクにマウスを乗せたら色と大きさを変える */
+.social-links a:hover {
+    background-color: #5d9cec; /* テーマカラーに合わせる */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ======== フッター ======== */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9em;
+    color: #999;
+}
+
+/* ======== アニメーションの定義 ======== */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
