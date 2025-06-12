@@ -75,12 +75,13 @@ body {
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 10px;
     font-size: 1.8em;
-    animation: fluffy-animation 2.5s ease-in-out infinite;
+    
 }
 
 /* Font Awesomeのアイコンをタイトルの前に表示 */
 .card h2 .fas {
     margin-right: 12px;
+    animation: fluffy-animation 2.5s ease-in-out infinite;
 }
 
 /* HTML内の改行を反映させるための設定 */
