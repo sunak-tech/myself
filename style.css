@@ -77,12 +77,12 @@ body {
     font-size: 1.8em;
     display: inline-block;
     animation: fluffy-animation 2.5s ease-in-out infinite;
+    animation: pulse-animation 2s ease-in-out infinite;
 }
 
 /* Font Awesomeのアイコンをタイトルの前に表示 */
 .card h2 .fas {
     margin-right: 12px;
-    
 }
 
 /* HTML内の改行を反映させるための設定 */
@@ -182,5 +182,18 @@ footer {
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+/* B. ドキドキと鼓動させるアニメーション */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /* 1.2倍に拡大 */
+  }
+  100% {
+    transform: scale(1);
   }
 }
