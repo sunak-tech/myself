@@ -381,3 +381,116 @@ footer {
         border-color: #5d9cec;
     }
 }
+/* ======== レスポンシブ対応のためのメディアクエリ ======== */
+
+/* スマートフォン向けのスタイル（例: 画面幅が768px以下の場合） */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px; /* スマホではパディングを減らす */
+    }
+
+    .container {
+        padding: 20px; /* コンテナのパディングも減らす */
+    }
+
+    /* h1のフォントサイズを調整 */
+    .profile-header h1 {
+        font-size: 3.0em; /* スマホ向けに縮小 */
+    }
+
+    /* タイプライターエフェクトのステップ数を文字数に合わせて調整 */
+    /* ここでは"RiST_snack"の文字数10に合わせる */
+    .profile-header h1::before {
+        /* `steps()`の引数を`data-text`の文字数に合わせる */
+        /* `data-text="RiST_snack"` は10文字 */
+        animation: 
+            typewriter 1.5s steps(10) forwards, /* アニメーション時間を短縮 */
+            blink-caret .75s step-end infinite,
+            gradient-flow 8s ease-in-out infinite;
+    }
+
+
+    /* 図形のサイズと位置を調整 */
+    .shape-1 {
+        border-left: 100px solid transparent; /* サイズを小さく */
+        border-right: 100px solid transparent;
+        border-bottom: 200px solid rgba(93, 156, 236, 0.2);
+        /* スマホ向けの位置調整 */
+        /* left: -20px; top: -30px; */ /* header-shapesがflexになったため不要 */
+    }
+
+    .shape-2 {
+        border-left: 150px solid transparent;
+        border-right: 150px solid transparent;
+        border-bottom: 250px solid rgba(10, 125, 240, 0.15);
+        /* スマホ向けの位置調整 */
+        /* right: -30px; bottom: -40px; */ /* header-shapesがflexになったため不要 */
+    }
+
+    .shape-3 {
+        border-left: 120px solid transparent;
+        border-right: 120px solid transparent;
+        border-bottom: 200px solid rgba(93, 156, 236, 0.1);
+        /* スマホ向けの位置調整 */
+        /* bottom: 20px; left: 10%; */ /* header-shapesがflexになったため不要 */
+    }
+
+    /* header-shapes を調整して図形が重なりすぎないようにする */
+    .header-shapes {
+        flex-direction: row; /* 基本は横並び */
+        flex-wrap: wrap; /* 必要に応じて折り返す */
+        justify-content: space-around; /* 均等に配置 */
+        align-items: flex-start; /* 上寄せ */
+        top: -50px; /* 全体を少し上に移動 */
+        height: 150%; /* 高さを広げて図形の配置スペースを増やす */
+    }
+
+    /* 各カードのフォントサイズも調整 */
+    .card p {
+        font-size: 0.95em;
+    }
+    .skills-list li {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .social-links a {
+        padding: 8px 15px;
+        font-size: 1.0em;
+        margin: 0 5px; /* マージンを減らす */
+    }
+}
+
+/* さらに小さなデバイス（例: 画面幅が480px以下の場合）の追加調整 */
+@media screen and (max-width: 480px) {
+    .profile-header h1 {
+        font-size: 2.2em; /* さらに縮小 */
+    }
+    .profile-header h1::before {
+        border-right: 2px solid #2c3e50; /* カーソルの太さも調整 */
+    }
+    .profile-icon {
+        width: 120px;
+        height: 120px;
+    }
+
+    .shape-1, .shape-2, .shape-3 {
+        border-left-width: 80px;
+        border-right-width: 80px;
+        border-bottom-width: 150px;
+    }
+    .shape-2 {
+        border-left-width: 100px;
+        border-right-width: 100px;
+        border-bottom-width: 180px;
+    }
+    .shape-3 {
+        border-left-width: 90px;
+        border-right-width: 90px;
+        border-bottom-width: 160px;
+    }
+
+    .header-shapes {
+        top: -80px; /* 全体をさらに上に移動 */
+        height: 200%; /* 高さをさらに広げる */
+    }
+}
