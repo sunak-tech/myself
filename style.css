@@ -20,10 +20,99 @@ body {
 }
 
 /* ======== ヘッダー：プロフィール ======== */
+/* ヘッダー自体を基準位置にし、はみ出した図形を隠す */
+.profile-header {
+    position: relative; /* 子要素を絶対配置するための基準 */
+    overflow: hidden;   /* ヘッダーからはみ出した図形を非表示にする */
+}
+
+/* 図形を配置するコンテナ */
+.header-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* テキストやアイコンより後ろに配置 */
+}
+
+/* すべての三角形に共通のスタイル */
+.shape {
+    position: absolute;
+    width: 0;
+    height: 0;
+    /* filter: blur(5px); /* 少しぼかして柔らかい印象にしたい場合はこの行を有効化 */
+}
+
+/* 1つ目の三角形 */
+.shape-1 {
+    /* CSSで三角形を作るテクニック */
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 250px solid rgba(93, 156, 236, 0.2); /* テーマカラー(青)の薄い色 */
+    
+    top: -50px;
+    left: 5%;
+    animation: move-shape-1 5s linear infinite alternate;
+}
+
+/* 2つ目の三角形 */
+.shape-2 {
+    border-left: 150px solid transparent;
+    border-right: 250px solid transparent;
+    border-bottom: 300px solid rgba(10, 125, 240, 0.15); /* 濃い青系の薄い色 */
+
+    bottom: -80px;
+    right: 25%;
+    animation: move-shape-2 6s linear infinite alternate;
+}
+
+/* 3つ目の三角形 */
+.shape-3 {
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 300px solid rgba(93, 156, 236, 0.1); /* さらに薄い青色 */
+
+    bottom: 50px;
+    left: 30%;
+    animation: move-shape-3 7s linear infinite alternate;
+}
+
+
+/* ======== アニメーションの定義 ======== のセクションに追加 */
+
+@keyframes move-shape-1 {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+    to {
+        transform: translateY(20px) rotate(15deg);
+    }
+}
+
+@keyframes move-shape-2 {
+    from {
+        transform: translateY(0) rotate(10deg);
+    }
+    to {
+        transform: translateY(-30px) rotate(-5deg);
+    }
+}
+
+@keyframes move-shape-3 {
+    from {
+        transform: translateY(0) rotate(-5deg);
+    }
+    to {
+        transform: translateY(-15px) rotate(10deg);
+    }
+}
+
 .profile-header {
     text-align: center;
     margin-bottom: 40px;
 }
+
 
 .profile-icon {
     width: 150px;
@@ -33,18 +122,98 @@ body {
     border: 5px solid #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     /* マウスを乗せたときの変化を滑らかにする */
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.4s ease; /* box-shadowのtransitionを追加 */
+    position: relative; /* ::before疑似要素のために必要 */
+    overflow: hidden; /* はみ出した要素を隠す */
 }
-
+/* 光るボーダー用の設定 */
+.profile-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: border-color 0.5s ease-in-out;
+}
 /* アイコンにマウスを乗せたら少し大きくする動き */
 .profile-icon:hover {
-    transform: scale(1.08);
+    transform: scale(1.1) rotate(5deg); /* 1.1倍に拡大し、5度回転させる */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* 影をより強調する */
+}
+.profile-icon:hover::before {
+    animation: rotate-glow 2s linear infinite; /* 回転アニメーションを適用 */
 }
 
+
+/* ======== ヘッダー：プロフィール ========内のh1に関する部分をすべて入れ替え ======== */
+
 .profile-header h1 {
-    margin: 15px 0 10px;
-    font-size: 2.5em;
-    color: #2c3e50; /* 少し濃い青系の色 */
+    position: relative; /* 疑似要素を配置するための基準 */
+    font-size: 5.0em;   /* お好みのサイズに調整してください */
+    font-weight: 700;
+    
+    /* h1本体のテキストは完全に非表示にする */
+    color: transparent;
+}
+
+/* タイプライターを実装する疑似要素 */
+.profile-header h1::before {
+    content: attr(data-text); /* HTMLのdata-text属性からテキストを取得 */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0; /* アニメーションで幅を0%から100%へ変化させる */
+    white-space: nowrap;
+    overflow: hidden;
+
+    /* こちらにグラデーションを適用 */
+    background: linear-gradient(45deg, #77a9ea, #2c3e50, #77a9ea);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* アニメーションをここにまとめる */
+    /* 1. タイプライターで文字を出現させる */
+    /* 2. カーソルを点滅させる */
+    /* 3. グラデーションを動かす */
+    animation: 
+        typewriter 2s steps(10) forwards, /* stepsの10は"RiST_snack"の文字数に合わせてください */
+        blink-caret .75s step-end infinite,
+        gradient-flow 8s ease-in-out infinite;
+    
+    border-right: 4px solid #2c3e50; /* カーソルのスタイル */
+}
+
+
+/* テキストが現れるアニメーション */
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* カーソルの点滅アニメーション */
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #2c3e50; }
+}
+
+/* マウスホバー時に少し大きくする */
+.profile-header h1:hover {
+    transform: scale(1.05);
+}
+
+/* グラデーションを動かすアニメーション */
+@keyframes gradient-flow {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
 
 .profile-header p {
@@ -196,4 +365,19 @@ footer {
   100% {
     transform: scale(1);
   }
+}
+
+/* 光るボーダーのアニメーションを定義 */
+@keyframes rotate-glow {
+    0% {
+        transform: rotate(0deg);
+        border-color: #5d9cec;
+    }
+    50% {
+        border-color: #eaf5fc;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-color: #5d9cec;
+    }
 }
